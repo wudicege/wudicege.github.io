@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>python爬虫</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///C:\Users\&#x65E0;&#x654C;&#x7B56;&#x54E5;\.atom\packages\markdown-preview-enhanced\node_modules\@shd101wyy\mume\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1 class="mume-header" id="requests%E6%A8%A1%E5%9D%97">requests模块</h1>
+
+<h3 class="mume-header" id="%E5%8F%91%E9%80%81getpost%E8%AF%B7%E6%B1%82">发送get，post请求</h3>
+
+<ul>
+<li>response = requests.get(url)</li>
+<li>response = requests.post(url,data={请求体的字典})</li>
+</ul>
+<h3 class="mume-header" id="response%E7%9A%84%E6%96%B9%E6%B3%95">response的方法</h3>
+
+<ul>
+<li>response.text
+<ul>
+<li>该方法经常会出现乱码，出现乱码使用response.encoding=&quot;utf-8&quot;</li>
+</ul>
+</li>
+<li>response.content.decode()
+<ul>
+<li>把响应的二进制字节流转化为str类型</li>
+</ul>
+</li>
+</ul>
+<h3 class="mume-header" id="session%E6%96%B9%E6%B3%95">session（）方法</h3>
+
+<ul>
+<li>和requests模块用发一样有post和get方法，但是避免了对cookie的操作</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#以人人网为例</span>
+<span class="token keyword">import</span> requests
+
+session <span class="token operator">=</span> requests<span class="token punctuation">.</span>session<span class="token punctuation">(</span><span class="token punctuation">)</span>
+url <span class="token operator">=</span> <span class="token string">"http://www.renren.com/PLogin.do"</span>
+headers <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.170 Safari/537.36"</span><span class="token punctuation">}</span>
+date <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"email"</span><span class="token punctuation">:</span> <span class="token string">"15869117206"</span><span class="token punctuation">,</span>
+    <span class="token string">"password"</span><span class="token punctuation">:</span> <span class="token string">"a588181"</span>
+<span class="token punctuation">}</span>
+session<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">,</span> data<span class="token operator">=</span>date<span class="token punctuation">)</span>
+url1 <span class="token operator">=</span> <span class="token string">"http://www.renren.com/966470757/profile"</span>
+session<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url1<span class="token punctuation">)</span>
+</pre><h2 class="mume-header" id="%E6%95%B0%E6%8D%AE%E6%8F%90%E5%8F%96%E6%96%B9%E6%B3%95">数据提取方法</h2>
+
+<h3 class="mume-header" id="json">json</h3>
+
+<ul>
+<li>基于js的数据交换格式，看起来像python类型（列表，字典）的字符串</li>
+<li>json.loads
+<ul>
+<li>把json字符串转化为python类型的</li>
+<li>json.loads(json字符串)</li>
+</ul>
+</li>
+<li>哪里会返回json的数据
+<ul>
+<li>浏览器切换到手机版</li>
+<li>抓包</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> json
+
+url <span class="token operator">=</span> <span class="token string">"http://fanyi.baidu.com/basetrans"</span>
+
+data <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">"from"</span><span class="token punctuation">:</span> <span class="token string">"zh"</span><span class="token punctuation">,</span>
+    <span class="token string">"to"</span><span class="token punctuation">:</span> <span class="token string">"en"</span><span class="token punctuation">,</span>
+    <span class="token string">"query"</span><span class="token punctuation">:</span> <span class="token string">"你好，世界"</span>
+<span class="token punctuation">}</span>
+headers<span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1"</span><span class="token punctuation">}</span>
+
+response <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">,</span> headers<span class="token operator">=</span>headers<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span>
+html <span class="token operator">=</span> response<span class="token punctuation">.</span>content<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># print(response.content.decode())</span>
+<span class="token comment"># print(type(response.content.decode()))</span>
+dict_ret <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>html<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>dict_ret<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>dict_ret<span class="token punctuation">)</span><span class="token punctuation">)</span>
+ret <span class="token operator">=</span> dict_ret<span class="token punctuation">[</span><span class="token string">"trans"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"dst"</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>ret<span class="token punctuation">)</span>
+</pre><ul>
+<li>ctrl+f可以在网页当前面板搜索</li>
+<li>json.dumps
+<ul>
+<li>把python类型转换成json字符串</li>
+<li>json.dumps({&quot;a&quot;:&quot;A&quot;，&quot;b&quot;:&quot;B&quot;})</li>
+<li>json.dumps(ret1,ensure_ascii=False,indent=2)
+<ul>
+<li>ensure_ascii=False:让中文显示成中文</li>
+<li>indent：能够让下一行在上一行的基础上空行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment">#&amp;callback=jsonp1</span>
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> json
+
+url <span class="token operator">=</span> <span class="token string">"https://m.douban.com/rexxar/api/v2/subject_collection/filter_tv_american_hot/items?os=ios&amp;for_mobile=1&amp;start=0&amp;count=18&amp;loc_id=108288&amp;_=1529041601585"</span>
+<span class="token comment">#按照浏览器中的url地址多了一个&amp;callback=jsonp1,decode()的结果不是json格式，需要去掉，得到json格式的结果</span>
+headers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1"</span><span class="token punctuation">,</span>
+           <span class="token string">"Referer"</span><span class="token punctuation">:</span> <span class="token string">"https: // m.douban.com / tv / american"</span><span class="token punctuation">}</span>
+
+response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span>headers <span class="token operator">=</span> headers<span class="token punctuation">)</span>
+json_str <span class="token operator">=</span> response<span class="token punctuation">.</span>content<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+ret1 <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>json_str<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>ret1<span class="token punctuation">)</span>
+<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"douban"</span><span class="token punctuation">,</span><span class="token string">"w"</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+    f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>ret1<span class="token punctuation">,</span>ensure_ascii<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>indent<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="%E5%9F%BA%E4%BA%8Ejson%E7%9A%84%E8%B1%86%E7%93%A3%E7%94%B5%E8%A7%86%E5%89%A7%E7%88%AC%E8%99%AB%E6%A1%88%E4%BE%8B">基于json的豆瓣电视剧爬虫案例</h3>
+
+<h5 class="mume-header" id="%E7%88%AC%E8%99%AB%E4%BB%A3%E7%A0%81">爬虫代码</h5>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> requests
+<span class="token keyword">import</span> json
+
+
+<span class="token keyword">class</span> <span class="token class-name">Doubanspider</span><span class="token punctuation">:</span>
+
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token comment">#要将callback去掉，url地址是在network中含有信息的包的url地址</span>
+      <span class="token comment">#可以用ctrl+f的快捷键在network页面查找</span>
+        self<span class="token punctuation">.</span>temp_url <span class="token operator">=</span> <span class="token string">"https://m.douban.com/rexxar/api/v2/subject_collection/filter_tv_american_hot/items?os=ios&amp;for_mobile=1&amp;start={}&amp;count=18&amp;loc_id=108288&amp;_=0"</span>
+        self<span class="token punctuation">.</span>headers <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1"</span><span class="token punctuation">,</span>
+            <span class="token string">"Referer"</span><span class="token punctuation">:</span> <span class="token string">"https: // m.douban.com / tv / american"</span><span class="token punctuation">}</span>
+            <span class="token comment">#headers要带referer，因为是手机版，不要会报错</span>
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># 实现主要逻辑</span>
+
+        num <span class="token operator">=</span> <span class="token number">0</span>
+        total <span class="token operator">=</span> <span class="token number">100</span>
+        <span class="token keyword">while</span> num <span class="token operator">&lt;</span> total <span class="token operator">+</span> <span class="token number">18</span><span class="token punctuation">:</span>
+            start_url <span class="token operator">=</span> self<span class="token punctuation">.</span>temp_url<span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+            response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token operator">=</span>start_url<span class="token punctuation">,</span> headers<span class="token operator">=</span>self<span class="token punctuation">.</span>headers<span class="token punctuation">)</span>
+            html_str <span class="token operator">=</span> response<span class="token punctuation">.</span>content<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            content_list<span class="token punctuation">,</span> total <span class="token operator">=</span> self<span class="token punctuation">.</span>get_content_list<span class="token punctuation">(</span>html_str<span class="token punctuation">)</span>
+            self<span class="token punctuation">.</span>save_content_list<span class="token punctuation">(</span>content_list<span class="token punctuation">)</span>
+            num <span class="token operator">+=</span> <span class="token number">18</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_content_list</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> html_str<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        dict_data <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>html_str<span class="token punctuation">)</span>
+        content_list <span class="token operator">=</span> dict_data<span class="token punctuation">[</span><span class="token string">"subject_collection_items"</span><span class="token punctuation">]</span>
+        total <span class="token operator">=</span> dict_data<span class="token punctuation">[</span><span class="token string">"total"</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> content_list<span class="token punctuation">,</span> total
+
+    <span class="token keyword">def</span> <span class="token function">save_content_list</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> content_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+      <span class="token comment">#a代表可追加模式</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"douban.json"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            <span class="token keyword">for</span> content <span class="token keyword">in</span> content_list<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>content<span class="token punctuation">,</span> ensure_ascii<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"save succeed"</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    douban <span class="token operator">=</span> Doubanspider<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    douban<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h3 class="mume-header" id="xpath%E5%92%8Cxml%E6%8F%90%E5%8F%96%E6%95%B0%E6%8D%AE">xpath和xml提取数据</h3>
+
+<ul>
+<li>xpath
+<ul>
+<li>一门从html中提示数据的语言</li>
+</ul>
+</li>
+<li>xpath语法
+<ul>
+<li>xpath helper插件：帮助我们从element中定位数据</li>
+<li>/html/head/meta:能够选中html下head下的所有的meta标签</li>
+<li>//：能够从任意节点开始选择</li>
+<li>//li:选择当前页面所有的li标签</li>
+<li>/html/head//link:head下所有的link标签（任何一级）</li>
+<li>//div[@class=&quot;a&quot;]/ul/li:选择class=&quot;a&quot;的div下的ul下的li</li>
+<li>//a/@herf :获取标签a的herf的属性的值</li>
+<li>//a/text():获取文本</li>
+<li>//a//text():获取a下的所有文本</li>
+</ul>
+</li>
+<li>lxml
+<ul>
+<li>安装：sudo pip3 install lxml</li>
+<li>使用：</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">from</span> lxml <span class="token keyword">import</span> etree
+element <span class="token operator">=</span> etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span><span class="token string">"html字符串"</span><span class="token punctuation">)</span>
+element<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">"xpath语句"</span><span class="token punctuation">)</span>
+</pre></li>
+</ul>
+<h3 class="mume-header" id="%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E7%82%B9%E7%9A%84%E5%AD%A6%E4%B9%A0">基础知识点的学习</h3>
+
+<h5 class="mume-header" id="range%E5%87%BD%E6%95%B0">range()函数</h5>
+
+<ul>
+<li>语法： <code>range(start,stop[,step])</code>
+<ul>
+<li>start: 计数从start开始。默认是从0开始。例如range（5）等价于range（0,5）</li>
+<li>stop： 计数到stop结束，但不包括stop。例如：range（0,5）是[0,1,2,3,4]</li>
+<li>step: 步长，默认是1，例如range（0,5）等价于range（0,5,1）</li>
+</ul>
+</li>
+</ul>
+<h5 class="mume-header" id="%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F">列表推导式</h5>
+
+<ul>
+<li>帮助我们快速的生成包含一堆数据的列表<br>
+<code>[i+10 for in range(10)]</code>--&gt;[10,11,12,...,19]<br>
+<code>[&quot;10月{}日&quot;.format(i) for i in range(1,10)</code></li>
+</ul>
+<h5 class="mume-header" id="%E5%AD%97%E5%85%B8%E6%8E%A8%E5%AF%BC%E5%BC%8F">字典推导式</h5>
+
+<ul>
+<li>帮助我们快速的生成包含一堆数据的字典</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token punctuation">{</span><span class="token string">"a{}.foramt(i)"</span><span class="token punctuation">:</span><span class="token number">10</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+<span class="token comment">#{"a0":10,"a1":"10","a2":"10"}</span>
+</pre><h5 class="mume-header" id="%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6">三元运算符</h5>
+
+<pre data-role="codeBlock" data-info="python" class="language-python">a <span class="token operator">=</span> <span class="token number">10</span> <span class="token keyword">if</span> <span class="token number">3</span><span class="token operator">&lt;</span><span class="token number">4</span> <span class="token keyword">else</span> <span class="token number">20</span>
+a <span class="token operator">=</span> <span class="token number">10</span> <span class="token keyword">if</span> <span class="token number">4</span><span class="token operator">&lt;</span><span class="token number">3</span> <span class="token keyword">else</span> <span class="token number">20</span>
+</pre><h5 class="mume-header" id="python%E5%9F%BA%E7%A1%80%E6%89%A9%E5%B1%95format%E5%87%BD%E6%95%B0">python基础扩展format函数</h5>
+
+<ul>
+<li>在字符串的参数使用{NUM}表示，0代表第一个，1代表第二个，：表示需要的操作，例子如下</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python">age <span class="token operator">=</span> <span class="token number">25</span>    
+name <span class="token operator">=</span> <span class="token string">'Caroline'</span>    
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{0} is {1} years old. '</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> age<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#输出参数    </span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{0} is a girl. '</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span>    
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{0:.3} is a decimal. '</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">/</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#小数点后三位    </span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{0:_^11} is a 11 length. '</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#使用_补齐空位    </span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'{first} is as {second}. '</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>first<span class="token operator">=</span>name<span class="token punctuation">,</span> second<span class="token operator">=</span><span class="token string">'Wendy'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#别名替换    </span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'My name is {0.name}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'out.txt'</span><span class="token punctuation">,</span> <span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#调用方法    </span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'My name is {0:8}.'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span><span class="token string">'Fred'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">#指定宽度</span>
+</pre><h5 class="mume-header" id="python-%E4%B8%ADstrip%E5%87%BD%E6%95%B0">python 中strip（）函数</h5>
+
+<ul>
+<li>用于你出字符串头尾指定的字符(只能是头尾),并返回行的字符串</li>
+</ul>
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token builtin">str</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span><span class="token comment">#去除头尾的零</span>
+<span class="token builtin">str</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token comment">#去除头尾的空白</span>
+</pre><h5 class="mume-header" id="print%E4%B8%AD%E5%8A%A0%E9%80%97%E5%8F%B7">print()中加逗号</h5>
+
+<ul>
+<li>输出在同一行，以空格隔开</li>
+</ul>
+<h5 class="mume-header" id="python%E9%94%99%E8%AF%AF">python错误</h5>
+
+<ul>
+<li>字符串中不可以用双引号</li>
+</ul>
+<h2 class="mume-header" id="%E5%B0%86%E7%88%AC%E5%8E%BB%E6%95%B0%E6%8D%AE%E8%A3%85%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%9D%97pymysql">将爬去数据装到数据库（使用模块pymysql）</h2>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token comment"># -*- coding: utf-8 -*-</span>
+<span class="token comment">#强制用utf-8编码</span>
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> pymysql
+<span class="token keyword">from</span> lxml <span class="token keyword">import</span> etree
+
+
+<span class="token keyword">class</span> <span class="token class-name">QiuBaiSpder</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>url_temp <span class="token operator">=</span> <span class="token string">"https://www.qiushibaike.com/8hr/page/{}"</span>
+        self<span class="token punctuation">.</span>headers <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token string">"User-Agent"</span><span class="token punctuation">:</span> <span class="token string">"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.170 Safari/537.36"</span><span class="token punctuation">}</span>
+
+
+
+    <span class="token keyword">def</span> <span class="token function">get_url_list</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        url_list <span class="token operator">=</span> <span class="token punctuation">[</span>self<span class="token punctuation">.</span>url_temp<span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">return</span> url_list
+
+    <span class="token keyword">def</span> <span class="token function">parse_url</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> url<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        response <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>url<span class="token punctuation">,</span> headers<span class="token operator">=</span>self<span class="token punctuation">.</span>headers<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> response<span class="token punctuation">.</span>content<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">get_content_list</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> html_str<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        html <span class="token operator">=</span> etree<span class="token punctuation">.</span>HTML<span class="token punctuation">(</span>html_str<span class="token punctuation">)</span>
+        div_list <span class="token operator">=</span> html<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">"//div[@id='content-left']/div"</span><span class="token punctuation">)</span>
+        content_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> div <span class="token keyword">in</span> div_list<span class="token punctuation">:</span>
+            item <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+            item<span class="token punctuation">[</span><span class="token string">"author_name"</span><span class="token punctuation">]</span> <span class="token operator">=</span> div<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">".//h2/text()"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>div<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">".//h2/text()"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token boolean">None</span>
+            item<span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span> <span class="token operator">=</span> div<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">".//div[@class='content']/span[1]/text()"</span><span class="token punctuation">)</span>
+            item<span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>i<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> item<span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">]</span>
+            item<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span> <span class="token operator">=</span> div<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">".//span[@class='stats-vote']/i/text()"</span><span class="token punctuation">)</span>
+            item<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token boolean">None</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            item<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span> <span class="token operator">=</span> div<span class="token punctuation">.</span>xpath<span class="token punctuation">(</span><span class="token string">".//span[@class='stats-comments']//i/text()"</span><span class="token punctuation">)</span>
+            item<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span> <span class="token operator">=</span> item<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token keyword">if</span> <span class="token builtin">len</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">else</span> <span class="token boolean">None</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            content_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> content_list
+
+    <span class="token keyword">def</span> <span class="token function">save_content_list</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> content_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"qiubai.txt"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            <span class="token keyword">for</span> content <span class="token keyword">in</span> content_list<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>content<span class="token punctuation">,</span> ensure_ascii<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#以utf-8编码格式写入</span>
+                <span class="token comment">#print(content)</span>
+                <span class="token comment">#print(type(content["stats_vote"]))</span>
+                <span class="token comment"># print(type(content["stats_vote"])</span>
+                <span class="token comment">#print("aaaaaaaaaaaaaaaaaaaaaaaaaaa")</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"save"</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">save_mysql</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span>content_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        connect <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">"192.168.43.122"</span><span class="token punctuation">,</span>
+                                  user<span class="token operator">=</span><span class="token string">"wei"</span><span class="token punctuation">,</span>
+                                  password<span class="token operator">=</span><span class="token string">"123456"</span><span class="token punctuation">,</span>
+                                  db<span class="token operator">=</span><span class="token string">"gaodb"</span><span class="token punctuation">,</span>
+                                  charset<span class="token operator">=</span><span class="token string">"utf8mb4"</span><span class="token punctuation">,</span><span class="token comment">#有表情，要是用utf8mb4编码</span>
+                                  use_unicode<span class="token operator">=</span><span class="token boolean">True</span><span class="token comment">#使用Unicode，因为</span>
+                                  <span class="token punctuation">)</span>
+        cursor <span class="token operator">=</span> connect<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token triple-quoted-string string">'''
+        下面三行的内容十分重要，不然导入数据库时会出错
+        '''</span>
+        cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">'SET NAMES utf8mb4'</span><span class="token punctuation">)</span>
+        cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SET CHARACTER SET utf8mb4"</span><span class="token punctuation">)</span>
+        cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span><span class="token string">"SET character_set_connection=utf8mb4"</span><span class="token punctuation">)</span>
+        <span class="token comment"># cursor.execute("set username utf8mb4")</span>
+        <span class="token comment"># cursor.execute("set content utf8mb4")</span>
+        <span class="token comment"># cursor.execute("set vote utf8mb4")</span>
+        <span class="token comment"># cursor.execute("set stats_vote utf8mb4")</span>
+        <span class="token keyword">for</span> content <span class="token keyword">in</span> content_list<span class="token punctuation">:</span>
+            i <span class="token operator">=</span> <span class="token punctuation">(</span>content<span class="token punctuation">[</span><span class="token string">"author_name"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>content<span class="token punctuation">[</span><span class="token string">"content"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>content<span class="token punctuation">[</span><span class="token string">"stats_vote"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>content<span class="token punctuation">[</span><span class="token string">"stats_comments"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+            sql <span class="token operator">=</span> <span class="token string">"insert into demo1 (username,content,vote,comments) values(%s,%s,%s,%s)"</span>
+            cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span>i<span class="token punctuation">)</span>
+            connect<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cursor<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        connect<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        url_list <span class="token operator">=</span> self<span class="token punctuation">.</span>get_url_list<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> url <span class="token keyword">in</span> url_list<span class="token punctuation">:</span>
+            html_str <span class="token operator">=</span> self<span class="token punctuation">.</span>parse_url<span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+            content_list <span class="token operator">=</span> self<span class="token punctuation">.</span>get_content_list<span class="token punctuation">(</span>html_str<span class="token punctuation">)</span>
+            <span class="token comment"># self.save_content_list(content_list)</span>
+            self<span class="token punctuation">.</span>save_mysql<span class="token punctuation">(</span>content_list<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    qiubai <span class="token operator">=</span> QiuBaiSpder<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    qiubai<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre><h2 class="mume-header" id="python%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E6%A8%A1%E5%9D%97pyecharts">python的数据可视化模块（pyecharts）</h2>
+
+<pre data-role="codeBlock" data-info="python" class="language-python"><span class="token keyword">import</span> pymysql
+<span class="token keyword">from</span> pyecharts <span class="token keyword">import</span> Bar
+
+
+<span class="token keyword">class</span> <span class="token class-name">ShowInfo</span><span class="token punctuation">:</span>
+
+    <span class="token comment"># def __init__(self):</span>
+    <span class="token comment">#     # self.cursor</span>
+
+    <span class="token keyword">def</span> <span class="token function">connect_mysql</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        connect <span class="token operator">=</span> pymysql<span class="token punctuation">.</span>connect<span class="token punctuation">(</span>
+            host<span class="token operator">=</span><span class="token string">"192.168.43.122"</span><span class="token punctuation">,</span>
+            user<span class="token operator">=</span><span class="token string">"wei"</span><span class="token punctuation">,</span>
+            password<span class="token operator">=</span><span class="token string">"123456"</span><span class="token punctuation">,</span>
+            db<span class="token operator">=</span><span class="token string">"gaodb"</span><span class="token punctuation">,</span>
+            charset<span class="token operator">=</span><span class="token string">"utf8mb4"</span><span class="token punctuation">,</span>
+            use_unicode<span class="token operator">=</span><span class="token boolean">True</span>
+        <span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> connect<span class="token punctuation">.</span>cursor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> connect
+
+    <span class="token keyword">def</span> <span class="token function">get_info</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> cursor<span class="token punctuation">,</span> connect<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        sql <span class="token operator">=</span> <span class="token string">"select count(id) from demo1"</span>
+        cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">)</span>
+        rows <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchone<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        vote <span class="token operator">=</span> <span class="token number">0</span>
+        username <span class="token operator">=</span> <span class="token number">0</span>
+        content <span class="token operator">=</span> <span class="token number">0</span>
+        comments <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">=</span> <span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+            sql <span class="token operator">=</span> <span class="token string">"select vote,username,content,comments from demo1 where id=%s"</span>
+            cursor<span class="token punctuation">.</span>execute<span class="token punctuation">(</span>sql<span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+            fetchone <span class="token operator">=</span> cursor<span class="token punctuation">.</span>fetchone<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            vote <span class="token operator">+=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>fetchone<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            username <span class="token operator">+=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>fetchone<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+            content <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>fetchone<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            comments <span class="token operator">+=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>fetchone<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        vote <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>vote <span class="token operator">/</span> rows<span class="token punctuation">)</span>
+        username <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>username <span class="token operator">/</span> rows<span class="token punctuation">)</span>
+        content <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>content <span class="token operator">/</span> rows<span class="token punctuation">)</span>
+        comments <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>comments <span class="token operator">/</span> rows<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>vote<span class="token punctuation">,</span> username<span class="token punctuation">,</span> content<span class="token punctuation">,</span> comments<span class="token punctuation">)</span>
+
+        connect<span class="token punctuation">.</span>commit<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        cursor<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        connect<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>vote<span class="token punctuation">,</span> username<span class="token punctuation">,</span> content<span class="token punctuation">,</span> comments<span class="token punctuation">]</span>
+
+    <span class="token keyword">def</span> <span class="token function">run</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">type</span><span class="token punctuation">(</span>self<span class="token punctuation">.</span>connect_mysql<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        cursor<span class="token punctuation">,</span> connect <span class="token operator">=</span> self<span class="token punctuation">.</span>connect_mysql<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        info_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        info_list <span class="token operator">=</span> self<span class="token punctuation">.</span>get_info<span class="token punctuation">(</span>cursor<span class="token punctuation">,</span> connect<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>info_list<span class="token punctuation">)</span>
+        self<span class="token punctuation">.</span>show_html<span class="token punctuation">(</span>info_list<span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">show_html</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> info_list<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        bar <span class="token operator">=</span> Bar<span class="token punctuation">(</span><span class="token string">"基于糗事百科热门段子的分析"</span><span class="token punctuation">)</span>
+        bar<span class="token punctuation">.</span>add<span class="token punctuation">(</span><span class="token string">"基于糗事百科热门段子的分析"</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token string">"平均好笑数"</span><span class="token punctuation">,</span><span class="token string">"有户名平均长度"</span><span class="token punctuation">,</span><span class="token string">"段子内容平均长度"</span><span class="token punctuation">,</span><span class="token string">"平均评论数"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>info_list<span class="token punctuation">,</span>is_label_show<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+
+        bar<span class="token punctuation">.</span>render<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    show_info <span class="token operator">=</span> ShowInfo<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    show_info<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</pre>
+      </div>
+      
+      
+    </body>
+    
+    
+    
+    
+    
+    
+    
+  </html>

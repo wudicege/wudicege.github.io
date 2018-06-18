@@ -11,3 +11,14 @@
 .pace-inactive {
   display: none;
 }
+#button1{
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.bolck{
+	display: block;
+	height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
